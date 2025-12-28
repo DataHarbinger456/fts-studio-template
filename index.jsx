@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import ReactDOM from 'react-dom/client';
-import { FORM_STEPS } from './constants';
-import DottedGlowBackground from './components/DottedGlowBackground';
+import { FORM_STEPS } from './constants.jsx';
+import DottedGlowBackground from './components/DottedGlowBackground.jsx';
 import {
     ChevronRight,
     ChevronLeft,
