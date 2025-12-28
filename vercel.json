@@ -1,7 +1,9 @@
 {
+  "cleanUrls": true,
+  "trailingSlash": false,
   "headers": [
     {
-      "source": "/(.*).tsx",
+      "source": "/(.*).jsx",
       "headers": [
         {
           "key": "Content-Type",
@@ -10,13 +12,19 @@
       ]
     },
     {
-      "source": "/(.*).ts",
+      "source": "/(.*).js",
       "headers": [
         {
           "key": "Content-Type",
           "value": "application/javascript; charset=utf-8"
         }
       ]
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "/$1"
     }
   ]
 }
