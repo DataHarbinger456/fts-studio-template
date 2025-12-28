@@ -50,3 +50,4 @@ yarn-error.log*
 # Optional: Node modules (if you add npm later)
 node_modules/
 dist/
+.vercel
