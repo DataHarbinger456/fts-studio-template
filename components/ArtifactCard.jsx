@@ -4,20 +4,13 @@
 */
 
 import React, { useEffect, useRef } from 'react';
-import { Artifact } from '../types';
-
-interface ArtifactCardProps {
-    artifact: Artifact;
-    isFocused: boolean;
-    onClick: () => void;
-}
 
 const ArtifactCard = React.memo(({
     artifact,
     isFocused,
     onClick
-}: ArtifactCardProps) => {
-    const codeRef = useRef<HTMLPreElement>(null);
+}) => {
+    const codeRef = useRef(null);
 
     // Auto-scroll logic for this specific card
     useEffect(() => {

@@ -5,14 +5,7 @@
 
 import React from 'react';
 
-interface SideDrawerProps {
-    isOpen: boolean;
-    onClose: () => void;
-    title: string;
-    children?: React.ReactNode;
-}
-
-const SideDrawer = ({ isOpen, onClose, title, children }: SideDrawerProps) => {
+const SideDrawer = ({ isOpen, onClose, title, children }) => {
     if (!isOpen) return null;
 
     return (

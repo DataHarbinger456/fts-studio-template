@@ -1,7 +1,6 @@
 import React, { useState, useMemo } from 'react';
 import ReactDOM from 'react-dom/client';
 import { FORM_STEPS } from './constants';
-import { FormState } from './types';
 import DottedGlowBackground from './components/DottedGlowBackground';
 import {
     ChevronRight,
@@ -28,7 +27,7 @@ function App() {
   const [currentStep, setCurrentStep] = useState(0);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [copied, setCopied] = useState(false);
-  const [formState, setFormState] = useState<FormState>({
+  const [formState, setFormState] = useState({
     businessType: '',
     needs: [],
     revenue: '',
@@ -41,8 +40,8 @@ function App() {
   const progress = ((currentStep + 1) / totalSteps) * 100;
   const currentStepData = FORM_STEPS[currentStep];
 
-  const handleSelectOption = (value: string) => {
-    const key = currentStepData.key as keyof FormState;
+  const handleSelectOption = (value) => {
+    const key = currentStepData.key;
 
     if (currentStepData.type === 'multi') {
       const currentNeeds = [...(formState.needs || [])];
@@ -56,7 +55,7 @@ function App() {
     }
   };
 
-  const handleInputChange = (field: string, value: string) => {
+  const handleInputChange = (field, value) => {
     setFormState({
       ...formState,
       contact: { ...formState.contact, [field]: value }
@@ -79,7 +78,7 @@ function App() {
   };
 
   const isNextDisabled = useMemo(() => {
-    const key = currentStepData.key as keyof FormState;
+    const key = currentStepData.key;
     if (currentStepData.type === 'single') {
         return !formState[key];
     }
@@ -111,7 +110,7 @@ Budget: ${formState.budget}
     setTimeout(() => setCopied(false), 2000);
   };
 
-  const renderIcon = (iconName: string) => {
+  const renderIcon = (iconName) => {
     const props = { size: 20, strokeWidth: 1.5 };
     switch (iconName) {
       case 'Building2': return <Building2 {...props} />;
@@ -282,7 +281,7 @@ Budget: ${formState.budget}
                 {currentStepData.options?.map((option) => {
                   const isSelected = currentStepData.type === 'multi'
                     ? formState.needs.includes(option.value)
-                    : formState[currentStepData.key as keyof FormState] === option.value;
+                    : formState[currentStepData.key] === option.value;
 
                   return (
                     <div

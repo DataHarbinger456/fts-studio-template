@@ -5,18 +5,6 @@
 
 import React, { useEffect, useRef } from 'react';
 
-type DottedGlowBackgroundProps = {
-  className?: string;
-  gap?: number;
-  radius?: number;
-  color?: string;
-  glowColor?: string;
-  opacity?: number;
-  speedMin?: number;
-  speedMax?: number;
-  speedScale?: number;
-};
-
 export default function DottedGlowBackground({
   className,
   gap = 12,
@@ -27,9 +15,9 @@ export default function DottedGlowBackground({
   speedMin = 0.5,
   speedMax = 1.5,
   speedScale = 0.8,
-}: DottedGlowBackgroundProps) {
-  const canvasRef = useRef<HTMLCanvasElement | null>(null);
-  const containerRef = useRef<HTMLDivElement | null>(null);
+}) {
+  const canvasRef = useRef(null);
+  const containerRef = useRef(null);
 
   useEffect(() => {
     const el = canvasRef.current;
@@ -57,7 +45,7 @@ export default function DottedGlowBackground({
     ro.observe(container);
     setTimeout(resize, 0);
 
-    let dots: { x: number; y: number; phase: number; speed: number }[] = [];
+    let dots = [];
 
     const regenDots = () => {
       dots = [];
@@ -81,7 +69,7 @@ export default function DottedGlowBackground({
     regenDots();
     window.addEventListener("resize", regenDots);
 
-    const draw = (now: number) => {
+    const draw = (now) => {
       if (stopped) return;
       const { width, height } = container.getBoundingClientRect();
       ctx.clearRect(0, 0, width, height);
